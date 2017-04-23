@@ -4,17 +4,27 @@ using namespace std;
 class Dictionary 
 {
 	public:
-		AnsiString translate(AnsiString x) {
-			if (words_map.count(x) > 0) {
- 				return words_map[x];
+		AnsiString translate(AnsiString x, AnsiString source) {
+			map <AnsiString, AnsiString> dict;
+
+			if (source == "ua") {
+				dict = ua_en;
+			} else if (source == "en") {
+				dict = en_ua;
+			}
+			
+			if (dict.count(x) > 0) {
+ 				return dict[x];
 			}
 			
 			return "None";
 		}
+
 		Dictionary();
 
 	private:
-		map <AnsiString,AnsiString> words_map;
+		map <AnsiString, AnsiString> en_ua;
+		map <AnsiString, AnsiString> ua_en;
 };
 
 
@@ -40,6 +50,7 @@ Dictionary::Dictionary()
 	   		delimiter_position + 1, 1000
 		);
 
-		words_map.insert ( pair<AnsiString,AnsiString>(english,translation) );
+		en_ua.insert( pair<AnsiString, AnsiString>(english, translation) );
+		ua_en.insert( pair<AnsiString, AnsiString>(translation, english) );
    	}
 }

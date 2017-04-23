@@ -4,6 +4,8 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "src/Dictionary.cpp"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -17,6 +19,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
+Dictionary *dict = new Dictionary;
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
@@ -24,7 +27,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	AnsiString userInput = Edit1->Text;
 
 	Memo2->Lines->Append(
-		trans(userInput)
+		dict->translate(userInput, "ua")
 	);
 }
 //---------------------------------------------------------------------------

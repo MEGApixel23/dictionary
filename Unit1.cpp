@@ -27,7 +27,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	AnsiString userInput = Edit1->Text;
 
 	Memo2->Lines->Append(
-		dict->translate(userInput)
+		dict->translate(userInput, "en")
 	);
 }
 //---------------------------------------------------------------------------
