@@ -41,7 +41,7 @@ object Form1: TForm1
     Top = 176
     Width = 75
     Height = 25
-    Caption = 'Traslate'
+    Caption = 'Translate'
     TabOrder = 2
     OnClick = Button1Click
   end
