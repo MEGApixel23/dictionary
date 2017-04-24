@@ -15,26 +15,43 @@ TForm1 *Form1;
 __fastcall TForm1::TForm1(TComponent* Owner)
 : TForm(Owner)
 {
-
+  
 }
-//---------------------------------------------------------------------------
 
 Dictionary *dict = new Dictionary;
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-	Memo2->Clear();
 	AnsiString userInput = Edit1->Text;
+	AnsiString sourceLang;
+	
+	switch (ComboBox1->ItemIndex)
+	{
+		case 0:
+			sourceLang = "en";
+			break;
+		case 1:
+			sourceLang = "ua";
+			break;
+		default:
+			sourceLang = "en";
+	}
 
-	Memo2->Lines->Append(
-		dict->translate(userInput, "en")
+	Memo2->Clear();
+    Memo2->Lines->Append( 
+		dict->translate(userInput, sourceLang)
 	);
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TForm1::N2Click(TObject *Sender)
+void __fastcall TForm1::changeLanguage(TObject *Sender)
 {
-	exit(1);
+	switch (ComboBox1->ItemIndex)
+	{
+		case 0:
+			Button1->Caption = "Translate";
+			break;
+		case 1:
+			Button1->Caption = "Перекласти";
+			break;
+	}
 }
-//---------------------------------------------------------------------------
-

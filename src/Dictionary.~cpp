@@ -6,6 +6,7 @@ class Dictionary
 	public:
 		AnsiString translate(AnsiString x, AnsiString source) {
 			map <AnsiString, AnsiString> dict;
+			AnsiString lowerCase = x.LowerCase();
 
 			if (source == "ua") {
 				dict = ua_en;
@@ -13,8 +14,8 @@ class Dictionary
 				dict = en_ua;
 			}
 			
-			if (dict.count(x) > 0) {
- 				return dict[x];
+			if (dict.count(lowerCase) > 0) {
+ 				return dict[lowerCase];
 			}
 			
 			return "None";
@@ -45,10 +46,10 @@ Dictionary::Dictionary()
 
    		english = list->Strings[i].SubString(
 	   		0, delimiter_position - 1
-		);
+		).LowerCase();
 		translation = list->Strings[i].SubString(
-	   		delimiter_position + 1, 1000
-		);
+	   		delimiter_position + 1, list->Strings[i].Length()
+		).LowerCase();
 
 		en_ua.insert( pair<AnsiString, AnsiString>(english, translation) );
 		ua_en.insert( pair<AnsiString, AnsiString>(translation, english) );
